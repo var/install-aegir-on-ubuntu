@@ -60,7 +60,22 @@ AEGIR_VERSION="6.x-1.6"
 #
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install apache2 php5 php5-cli php5-gd php5-mysql mysql-server postfix git-core unzip
+packages=("apache2" "php5" "php5-cli" "php5-gd" "php5-mysql" "mysql-server" "postfix" "git-core" "unzip")
+
+for (( c=0; c<${#packages[@]}; c++ ))
+do
+  s=`dpkg -s ${packages[$c]} | grep Status`
+	if [ "$s" = "Status: install ok installed" ]
+	then
+    	echo "${packages[$c]} is installed"	
+    else
+    	echo "installing ${packages[$c]} ..."
+    	sudo apt-get install ${packages[$c]}
+    	echo "done installing ${packages[$c]}."
+    	
+	fi
+	echo ${packages[$c]} 
+done
 #
 #
 #    2. LAMP configurations
