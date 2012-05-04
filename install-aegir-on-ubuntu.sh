@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 #
 # Aegir 1.x install script for Ubuntu servers
 # (install-aegir-on-ubuntu.sh)
